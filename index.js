@@ -32,7 +32,6 @@ app.on('ready', () => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.setTitle(app.getName());
   });
-  
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
