@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Catamaran|Shrikhand');
+
+$primary-color:#cc0000;
+$secondary-color:black;
+$list-edit-active-color:#E0F2F1;
+$button-floating-background: black;
+
+.title {
+  color: $primary-color;
+  font-size: 3em !important;
+  font-family: 'Shrikhand', cursive;
+  text-decoration: underline;
+}
+
+h1 {
+  @extend .title;
+}
+
+h2 {
+  @extend .title;
+  font-size: 2em !important;
+}
+
+h3 {
+  font-size: 1.5em !important;
+  margin-top: 0px !important;
+  margin-bottom: 10px !important;
+}
+
+p {
+  font-family: 'Catamaran', sans-serif;
+  font-size: 1.5em;
+}
+
+th {
+  font-weight: bolder;
+  font-size: 1.2em;
+}
+
+/* Styles */
+#app {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4d4d4d;
+}
+
+$dish-width: 117px;
+$dish-height: 78px;
+
+.dish-img{
+    height: $dish-height;
+    width: $dish-width;
+}
+
+img{ border:0 }
+
+.f-left{
+  float:left;
+}
+
+.f-right{
+  float:right;
+}
+
+i {
+  color:$primary-color;
+}
+
+.no-mb{
+  margin-bottom: 0px !important;
+}
+
+.text-inline{
+  @extend .no-mb;
+  height: 20px !important;
+  width: 50% !important;
+}
+
+.collection .collection-item.active{
+  background-color:$list-edit-active-color !important;
+  color:$primary-color !important;
+}
