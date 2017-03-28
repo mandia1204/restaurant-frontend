@@ -46,13 +46,6 @@ th {
 $dish-width: 117px;
 $dish-height: 78px;
 
-.dish-img{
-    height: $dish-height;
-    width: $dish-width;
-}
-
-img{ border:0 }
-
 .f-left{
   float:left;
 }
@@ -63,6 +56,10 @@ img{ border:0 }
 
 i {
   color:$primary-color;
+}
+
+.page-host {
+  padding: 1em;
 }
 
 .no-mb{
