@@ -2,6 +2,8 @@
 /* eslint-disable indent */
 import { inject } from 'aurelia-framework';
 import { DashboardClient } from '../../clients/dashboard-client';
+import { constants } from '../../util/constants';
+//import Chartjs from 'aurelia-chart';
 
 @inject(DashboardClient)
 export class Dashboard {
@@ -17,16 +19,44 @@ export class Dashboard {
 
     this.resetPieData();
     this.resetLineData();
-    this.resetBarData();
+    //this.ventasAnuales();
     this.resetSemanal();
     this.resetRadarData();
+
+  //   this.barData = {
+  //     labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+  //     datasets: [
+  //         {
+  //             label: "Ventas del Año",
+  //             backgroundColor: [
+  //                 'rgba(255, 99, 132, 0.2)',
+  //                 'rgba(54, 162, 235, 0.2)',
+  //                 'rgba(255, 206, 86, 0.2)',
+  //                 'rgba(75, 192, 192, 0.2)',
+  //                 'rgba(153, 102, 255, 0.2)',
+  //                 'rgba(255, 159, 64, 0.2)',
+  //                 'rgba(255, 159, 64, 0.2)'
+  //             ],
+  //             borderColor: [
+  //                 'rgba(255,99,132,1)',
+  //                 'rgba(54, 162, 235, 1)',
+  //                 'rgba(255, 206, 86, 1)',
+  //                 'rgba(75, 192, 192, 1)',
+  //                 'rgba(153, 102, 255, 1)',
+  //                 'rgba(255, 159, 64, 1)',
+  //                 'rgba(255, 159, 64, 1)'
+  //             ],
+  //             borderWidth: 1,
+  //             data: [12000, 15000, 13000, 11000, 20000, 50000, 60000]
+  //         }
+  //     ]
+  // };
   }
 
   attached() {
-    console.log("attached");
-    this.client.getDashboard().then((data)=>{
-      console.log(data);
-    });
+
+    //this.client.getDashboard().then(this.ventasAnuales.bind(this));
+    //console.log(document.getElementById('bar-chart'));
   }
 
   resetRadarData() {
@@ -85,7 +115,7 @@ export class Dashboard {
         };
   }
 
-  resetSemanal() {
+  resetSemanal(data) {
     this.semanal = {
       labels: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
       datasets: [
@@ -116,35 +146,45 @@ export class Dashboard {
     };
   }
 
-  resetBarData() {
-      this.barData = {
-        labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-        datasets: [
-            {
-                label: "Ventas del Año",
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1,
-                data: [12000, 15000, 13000, 11000, 20000, 50000, 60000]
-            }
-        ]
-    };
+  ventasAnuales(data) {
+      console.log(data);
+      const ventas = data.charts.filter(c=>c.name === "VENTAS")[0];
+      const labels = ventas.labels;
+      const dataset = ventas.datasets[0];
+      //console.log(labels.map(label=>constants.BAR_MONTHS[label].background));
+      //console.log(labels.map(label=>constants.BAR_MONTHS[label].border));
+      dataset.backgroundColor = labels.map(label=>constants.BAR_MONTHS[label].background);
+      dataset.borderColor = labels.map(label=>constants.BAR_MONTHS[label].border);
+      dataset.borderWidth = 1;
+      this.barData = ventas;
+    //   this.barData = {
+    //     labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+    //     datasets: [
+    //         {
+    //             label: "Ventas del Año",
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)',
+    //                 'rgba(75, 192, 192, 0.2)',
+    //                 'rgba(153, 102, 255, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)'
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255,99,132,1)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)',
+    //                 'rgba(255, 159, 64, 1)'
+    //             ],
+    //             borderWidth: 1,
+    //             data: [12000, 15000, 13000, 11000, 20000, 50000, 60000]
+    //         }
+    //     ]
+    // };
   }
 
   resetPieData() {

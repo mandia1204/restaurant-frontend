@@ -1,15 +1,16 @@
 <template>
     <div>
       <div class="row">
-        <div class="dashboard-block bar-block">
+        <!-- <div class="dashboard-block bar-block">
           <div class="dashboard-chart">
             <chart type="bar" class="bar-style"
             should-update="true" throttle="2000" data.bind="barData"></chart>
           </div>
-        </div>
+        </div> -->
         <div class="dashboard-block bar-block">
           <div class="dashboard-chart">
-            <chart type="bar" class="bar-style" should-update="true" throttle="2000" data.bind="semanal"></chart>
+            <!-- <chart id="bar-chart" type="bar" class="bar-style" should-update="true" throttle="2000" data.bind="semanal"></chart> -->
+            <canvas id="bar-chart"></canvas>
           </div>
         </div>
         <div class="dashboard-block bar-block">
