@@ -1,9 +1,13 @@
 /* eslint-disable quotes */
 /* eslint-disable indent */
+import { inject } from 'aurelia-framework';
+import { DashboardClient } from '../../clients/dashboard-client';
 
+@inject(DashboardClient)
 export class Dashboard {
 
-  constructor() {
+  constructor(client) {
+    this.client = client;
     this.DynamicDoughnutData = {};
     this.SimpleLineData = {};
     this.barData = {};
@@ -16,6 +20,13 @@ export class Dashboard {
     this.resetBarData();
     this.resetSemanal();
     this.resetRadarData();
+  }
+
+  attached() {
+    console.log("attached");
+    this.client.getDashboard().then((data)=>{
+      console.log(data);
+    });
   }
 
   resetRadarData() {
