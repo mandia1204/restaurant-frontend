@@ -1,15 +1,17 @@
 /* eslint-disable quotes */
 /* eslint-disable indent */
 import { inject } from 'aurelia-framework';
-import { DashboardClient } from '../../clients/dashboard-client';
+import { DashboardService } from './services/dashboard-service';
 import { constants } from '../../util/constants';
-//import Chartjs from 'aurelia-chart';
+import ChartHelper from '../../util/chart-helper';
 
-@inject(DashboardClient)
+@inject(DashboardService, ChartHelper)
 export class Dashboard {
 
-  constructor(client) {
-    this.client = client;
+  constructor(service, chartHelper) {
+    this.service = service;
+    this.chartHelper = chartHelper;
+
     this.DynamicDoughnutData = {};
     this.SimpleLineData = {};
     this.barData = {};
@@ -19,44 +21,34 @@ export class Dashboard {
 
     this.resetPieData();
     this.resetLineData();
-    //this.ventasAnuales();
-    this.resetSemanal();
-    this.resetRadarData();
-
-  //   this.barData = {
-  //     labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-  //     datasets: [
-  //         {
-  //             label: "Ventas del Año",
-  //             backgroundColor: [
-  //                 'rgba(255, 99, 132, 0.2)',
-  //                 'rgba(54, 162, 235, 0.2)',
-  //                 'rgba(255, 206, 86, 0.2)',
-  //                 'rgba(75, 192, 192, 0.2)',
-  //                 'rgba(153, 102, 255, 0.2)',
-  //                 'rgba(255, 159, 64, 0.2)',
-  //                 'rgba(255, 159, 64, 0.2)'
-  //             ],
-  //             borderColor: [
-  //                 'rgba(255,99,132,1)',
-  //                 'rgba(54, 162, 235, 1)',
-  //                 'rgba(255, 206, 86, 1)',
-  //                 'rgba(75, 192, 192, 1)',
-  //                 'rgba(153, 102, 255, 1)',
-  //                 'rgba(255, 159, 64, 1)',
-  //                 'rgba(255, 159, 64, 1)'
-  //             ],
-  //             borderWidth: 1,
-  //             data: [12000, 15000, 13000, 11000, 20000, 50000, 60000]
-  //         }
-  //     ]
-  // };
+    // this.resetSemanal();
+    // this.resetRadarData();
   }
 
   attached() {
+    this.service.getDashboard().then(this.ventasAnuales.bind(this));
+    this.chartHelper.createChart('ventas-compras-chart', this.lineData, 'line', this.barOptions());
+    this.chartHelper.createChart('productos-vendidos-chart', this.DynamicDoughnutData, 'pie', this.pieOptions());
+  }
 
-    //this.client.getDashboard().then(this.ventasAnuales.bind(this));
-    //console.log(document.getElementById('bar-chart'));
+  barOptions() {
+    return {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+  }
+
+  pieOptions() {
+    return {
+        animation: {
+            animateScale: true
+        }
+    };
   }
 
   resetRadarData() {
@@ -147,97 +139,33 @@ export class Dashboard {
   }
 
   ventasAnuales(data) {
-      console.log(data);
       const ventas = data.charts.filter(c=>c.name === "VENTAS")[0];
       const labels = ventas.labels;
       const dataset = ventas.datasets[0];
-      //console.log(labels.map(label=>constants.BAR_MONTHS[label].background));
-      //console.log(labels.map(label=>constants.BAR_MONTHS[label].border));
       dataset.backgroundColor = labels.map(label=>constants.BAR_MONTHS[label].background);
       dataset.borderColor = labels.map(label=>constants.BAR_MONTHS[label].border);
       dataset.borderWidth = 1;
       this.barData = ventas;
-    //   this.barData = {
-    //     labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-    //     datasets: [
-    //         {
-    //             label: "Ventas del Año",
-    //             backgroundColor: [
-    //                 'rgba(255, 99, 132, 0.2)',
-    //                 'rgba(54, 162, 235, 0.2)',
-    //                 'rgba(255, 206, 86, 0.2)',
-    //                 'rgba(75, 192, 192, 0.2)',
-    //                 'rgba(153, 102, 255, 0.2)',
-    //                 'rgba(255, 159, 64, 0.2)',
-    //                 'rgba(255, 159, 64, 0.2)'
-    //             ],
-    //             borderColor: [
-    //                 'rgba(255,99,132,1)',
-    //                 'rgba(54, 162, 235, 1)',
-    //                 'rgba(255, 206, 86, 1)',
-    //                 'rgba(75, 192, 192, 1)',
-    //                 'rgba(153, 102, 255, 1)',
-    //                 'rgba(255, 159, 64, 1)',
-    //                 'rgba(255, 159, 64, 1)'
-    //             ],
-    //             borderWidth: 1,
-    //             data: [12000, 15000, 13000, 11000, 20000, 50000, 60000]
-    //         }
-    //     ]
-    // };
+      this.chartHelper.createChart('ventas-anuales-chart', this.barData, 'bar', this.barOptions());
   }
 
   resetPieData() {
     this.DynamicDoughnutData = {
       labels: ["Alimentos", "Bebidas", "Otros" ],
       datasets: [
-      {
-          data: [1500, 500, 200],
-          backgroundColor: [
-                        "#f44336",
-                        "#42a5f5",
-                        "#9c27b0"
-                    ],
-                    hoverBackgroundColor: [
-                        "#f44336",
-                        "#42a5f5",
-                        "#9c27b0"
-                    ]
-                }]
-        };
+        {
+            data: [1500, 500, 200],
+            backgroundColor: [
+                          "#f44336",
+                          "#42a5f5",
+                          "#9c27b0"
+                      ],
+                      hoverBackgroundColor: [
+                          "#f44336",
+                          "#42a5f5",
+                          "#9c27b0"
+                      ]
+        }]
+      };
     }
-
-    // resetLineData() {
-    //     this.SimpleLineData = {
-    //         labels: ["January", "February", "March", "April", "May", "June", "July"],
-    //         datasets: [
-    //             {
-    //                 label: "Healthy People",
-    //                 backgroundColor: "rgba(220,220,220,0.2)",
-    //                 borderColor: "rgba(220,220,220,1)",
-    //                 pointColor: "rgba(220,220,220,1)",
-    //                 pointStrokeColor: "#fff",
-    //                 pointHighlightFill: "#fff",
-    //                 pointHighlightStroke: "rgba(220,220,220,1)",
-    //                 data: [65, 59, 80, 81, 56, 55, 40]
-    //             },
-    //             {
-    //                 label: "Ill People",
-    //                 backgroundColor: "rgba(151,187,205,0.2)",
-    //                 borderColor: "rgba(151,187,205,1)",
-    //                 pointColor: "rgba(151,187,205,1)",
-    //                 pointStrokeColor: "#fff",
-    //                 pointHighlightFill: "#fff",
-    //                 pointHighlightStroke: "rgba(151,187,205,1)",
-    //                 data: [28, 48, 40, 19, 86, 27, 90]
-    //             }
-    //         ]
-    //     };
-    // }
-
-  // addEntry() {
-  //   this.DynamicDoughnutData.labels.push('New Colour');
-  //   this.DynamicDoughnutData.datasets[0].data.push(50);
-  //   this.DynamicDoughnutData.datasets[0].backgroundColor.push('#B4FD5C');
-  // }
 }

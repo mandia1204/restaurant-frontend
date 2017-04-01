@@ -12,15 +12,11 @@ System.config({
       "map": {
         "../css/materialize.css": "../../../src/styles/styles.scss"
       }
-    },
-    "aurelia-chart": {
-      "main": "index.js"
     }
   },
   map: {
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.1",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0",
-    "aurelia-chart": "npm:aurelia-chart@0.2.7",
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.1",
     "aurelia-framework": "npm:aurelia-framework@1.1.1",
     "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0",
@@ -35,6 +31,7 @@ System.config({
     "aurelia-templating-router": "npm:aurelia-templating-router@1.0.0",
     "bluebird": "npm:bluebird@3.4.1",
     "bootstrap": "github:twbs/bootstrap@3.3.7",
+    "chart.js": "npm:chart.js@2.5.0",
     "fetch": "github:github/fetch@1.0.0",
     "font-awesome": "npm:font-awesome@4.6.3",
     "jquery": "npm:jquery@2.2.4",
@@ -95,10 +92,6 @@ System.config({
       "aurelia-templating-binding": "npm:aurelia-templating-binding@1.0.0",
       "aurelia-templating-resources": "npm:aurelia-templating-resources@1.1.1",
       "aurelia-templating-router": "npm:aurelia-templating-router@1.0.0"
-    },
-    "npm:aurelia-chart@0.2.7": {
-      "aurelia-framework": "npm:aurelia-framework@1.1.1",
-      "chart.js": "npm:chart.js@2.5.0"
     },
     "npm:aurelia-dependency-injection@1.3.0": {
       "aurelia-metadata": "npm:aurelia-metadata@1.0.3",

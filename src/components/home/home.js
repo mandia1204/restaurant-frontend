@@ -2,7 +2,7 @@
 export class Home {
 
   constructor() {
-    this.heading = 'Dashboard 1.0';
+    this.heading = 'Dashboard 2.0';
     this.subtitle = 'dashboard';
   }
 }
