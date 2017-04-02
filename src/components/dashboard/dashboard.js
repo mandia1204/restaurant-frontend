@@ -14,14 +14,18 @@ export class Dashboard {
 
   attached() {
     this.service.getDashboard().then(this.renderCharts.bind(this));
-    //this.chartHelper.createChart('productos-vendidos-chart', this.DynamicDoughnutData, 'pie', this.pieOptions());
   }
 
   renderCharts(data) {
-    const ventas = this.chartFormatter.format(data.charts.filter(c=>c.name === 'VENTAS')[0], 'bar');
-    const ventasCompras = this.chartFormatter.format(data.charts.filter(c=>c.name === 'VENTAS_COMPRAS')[0], 'line');
+    data.get = (par) => data.charts.filter(c=>c.name === par)[0];
+    const ventasAnuales = this.chartFormatter.format(data.get('VENTAS'), 'bar');
+    const ventasSemanales = this.chartFormatter.format(data.get('VENTAS_SEMANAL'), 'bar');
+    const ventasCompras = this.chartFormatter.format(data.get('VENTAS_COMPRAS'), 'line');
+    const productosVendidos = this.chartFormatter.format(data.get('PRODUCTOS_VENDIDOS'), 'pie');
 
     this.chartBuilder.build('ventas-compras-chart', ventasCompras, 'line');
-    this.chartBuilder.build('ventas-anuales-chart', ventas, 'bar');
+    this.chartBuilder.build('ventas-anuales-chart', ventasAnuales, 'bar');
+    this.chartBuilder.build('ventas-semanales-chart', ventasSemanales, 'bar');
+    this.chartBuilder.build('productos-vendidos-chart', productosVendidos, 'pie');
   }
 }
