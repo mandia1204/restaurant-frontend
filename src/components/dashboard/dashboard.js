@@ -22,10 +22,12 @@ export class Dashboard {
     const ventasSemanales = this.chartFormatter.format(data.get('VENTAS_SEMANAL'), 'bar');
     const ventasCompras = this.chartFormatter.format(data.get('VENTAS_COMPRAS'), 'line');
     const productosVendidos = this.chartFormatter.format(data.get('PRODUCTOS_VENDIDOS'), 'pie');
+    const platosVendidos = this.chartFormatter.format(data.get('PLATOS_VENDIDOS'), 'bar');
 
     this.chartBuilder.build('ventas-compras-chart', ventasCompras, 'line');
     this.chartBuilder.build('ventas-anuales-chart', ventasAnuales, 'bar');
     this.chartBuilder.build('ventas-semanales-chart', ventasSemanales, 'bar');
     this.chartBuilder.build('productos-vendidos-chart', productosVendidos, 'pie');
+    this.chartBuilder.build('platos-vendidos-chart', platosVendidos, 'bar');
   }
 }

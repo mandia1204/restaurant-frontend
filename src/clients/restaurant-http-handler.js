@@ -15,6 +15,7 @@ export class RestaurantHttpHandler extends HttpClient {
       config
         .useStandardConfiguration()
         .withDefaults({
+          mode: 'cors',
           headers: {
             Accept: 'application/json',
             'X-Requested-With': 'Fetch'
