@@ -9,6 +9,6 @@ export class DashboardClient {
   }
 
   getDashboard() {
-    return this.client.getFrom('/api/dashboard').then(response => response.json());
+    return this.client.getFrom('/dashboardApi/api/dashboard').then(response => response.json());
   }
 }
