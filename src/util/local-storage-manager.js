@@ -20,5 +20,4 @@ class LocalStorageManager {
     return jwt_decode(jwt);
   }
 }
-//const localStorageManager = new LocalStorageManager();
 export default LocalStorageManager;

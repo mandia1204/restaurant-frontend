@@ -4,13 +4,13 @@
       <md-card md-title="${title}">
         <div class="row">
           <div class="col s12 m12 l12">
-            <md-input md-label="enter user name" md-value.bind="userName"></md-input>
+            <md-input md-label="enter user name" md-value.bind="user.userName"></md-input>
           </div>
           <div class="col s12 m12 l12">
-            <md-input md-type="password" md-label="enter password" md-value.bind="password"></md-input>
+            <md-input md-type="password" md-label="enter password" md-value.bind="user.password"></md-input>
           </div>
           <div class="col s12 m12 l12">
-            <button md-button>
+            <button md-button click.trigger="login()">
               <i class="left material-icons">mode_edit</i>Log in
             </button>
           </div>
