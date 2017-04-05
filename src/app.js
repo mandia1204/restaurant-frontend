@@ -1,13 +1,29 @@
 import 'materialize-css';
+import { inject } from 'aurelia-framework';
+import { AuthService, FetchConfig } from 'aurelia-auth';
+import AuthorizeStep  from './routing/authorize-step';
+import routes from './routing/routes.js';
 
+@inject(AuthService, FetchConfig)
 export class App {
+
+  constructor(authService, fetchConfig) {
+    this.fetchConfig = fetchConfig;
+    this.authService = authService;
+  }
+
   configureRouter(config, router) {
     config.title = 'Logo';
-    config.map([
-      { route: ['', 'home'], name: 'home', moduleId: 'components/home/home', nav: true, title: 'Home' },
-      { route: ['dashboard'], name: 'dashboard', moduleId: 'components/dashboard/dashboard', nav: true, title: 'Dashboard' }
-    ]);
-
+    config.addAuthorizeStep(AuthorizeStep);
+    config.map(routes);
     this.router = router;
+  }
+
+  activate() {
+    this.fetchConfig.configure();
+  }
+
+  get isAuthenticated() {
+    return this.authService.isAuthenticated();
   }
 }

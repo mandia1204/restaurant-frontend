@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <require from="nav-bar.html"></require>
-    <nav-bar router.bind="router"></nav-bar>
+    <require from="./components/nav_bar/nav-bar.html"></require>
+    <nav-bar router.bind="router" authenticated.bind="isAuthenticated"></nav-bar>
 
     <div class="page-host dashboard-container">
       <router-view></router-view>
