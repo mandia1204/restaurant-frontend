@@ -11,8 +11,9 @@
           </div>
           <div class="col s12 m12 l12">
             <button md-button click.trigger="login()">
-              <i class="left material-icons">mode_edit</i>Log in
+              <i class="left material-icons">https</i>Log in
             </button>
+            <span if.bind="!isValid">User name or password incorrect.</span>
           </div>
         </div>
       </md-card>

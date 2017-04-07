@@ -42,7 +42,7 @@ gulp.task('build-css', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build-sass', function () {
+gulp.task('build-sass', function() {
   return gulp.src(paths.sassMain)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(paths.output))
