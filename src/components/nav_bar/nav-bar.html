@@ -1,10 +1,13 @@
-<template bindable="router, authenticated">
+<template>
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">${router.title}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
           <a if.bind="!row.config.auth || (row.config.auth && authenticated)" data-toggle="collapse" data-target="#skeleton-navigation-navbar-collapse.in" href.bind="row.href">${row.title}</a>
+        </li>
+        <li>
+          <a if.bind="authenticated" click.delegate="logout()" data-toggle="collapse" data-target="#skeleton-navigation-navbar-collapse.in">Logout</a>
         </li>
       </ul>
     </div>
