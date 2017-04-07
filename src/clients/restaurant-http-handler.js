@@ -1,14 +1,12 @@
-// import { inject } from 'aurelia-framework';
-// import { AuthService } from 'aurelia-auth';
+import { inject } from 'aurelia-framework';
+import { AuthService } from 'aurelia-auth';
 import { HttpClient } from 'aurelia-fetch-client';
-// import { ValidateInterceptor } from '../util/validate-interceptor';
 import { constants } from '../util/constants';
 
-// @inject(AuthService, ValidateInterceptor)
+@inject(AuthService)
 export class RestaurantHttpHandler extends HttpClient {
 
-  // constructor(auth, interceptor) {
-  constructor() {
+  constructor(auth) {
     super();
 
     this.configure(config =>
@@ -21,8 +19,7 @@ export class RestaurantHttpHandler extends HttpClient {
             'X-Requested-With': 'Fetch'
           }
         })
-        // .withInterceptor(auth.tokenInterceptor)
-        // .withInterceptor(interceptor)
+        .withInterceptor(auth.tokenInterceptor)
         .withBaseUrl(constants.baseUrl));
   }
 }
