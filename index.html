@@ -30,7 +30,8 @@
             .standardConfiguration()
             .developmentLogging()
             .plugin('aurelia-materialize-bridge', bridge => bridge.useAll())
-            .plugin('aurelia-auth');
+            .plugin('aurelia-auth')
+            .plugin('aurelia-validation');
 
           aurelia.start().then(() => aurelia.setRoot('app', document.body));
         });

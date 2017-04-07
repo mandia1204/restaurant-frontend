@@ -10,9 +10,9 @@ export class Login {
 
   constructor(storage, router, service, dialog) {
     this.title = 'Please, login into your account';
-    this.service = service;
-    this.router = router;
     this.storage = storage;
+    this.router = router;
+    this.service = service;
     this.dialog = dialog;
     this.user = User();
     this.isValid = true;
@@ -21,11 +21,17 @@ export class Login {
   login() {
     this.isValid = true;
     this.service.authenticate(this.user).then((response) => {
-      response.json().then((data) => {
-        this.storage.setAuthToken(data.token);
-        this.router.navigate('home');
-      });
+      if (response.errors) {
+        console.log('display errors');
+      } else {
+        response.json().then(this._processSuccess.bind(this));
+      }
     }).catch(this._processError.bind(this));
+  }
+
+  _processSuccess(data) {
+    this.storage.setAuthToken(data.token);
+    this.router.navigate('home');
   }
 
   _processError(err) {
