@@ -1,23 +1,24 @@
 <template>
   <section class="au-animate">
     <div class="container">
-      <md-card md-title="${title}">
-        <div class="row">
-          <div class="col s12 m12 l12">
-            <md-input name="userName" md-validate="true" md-label="enter user name" md-value.bind="user.userName & validate:rules"></md-input>
+      <form>
+        <md-card md-title="${title}">
+          <div class="row">
+            <div class="col s12 m12 l12">
+              <md-input name="userName" md-validate="true" md-label="enter user name" md-value.bind="user.userName & validate:rules"></md-input>
+            </div>
+            <div class="col s12 m12 l12">
+              <md-input name="password" md-validate="true" md-type="password" md-label="enter password" md-value.bind="user.password & validate:rules"></md-input>
+            </div>
+            <div class="col s12 m12 l12">
+              <button md-button click.trigger="login()">
+                <i class="left material-icons">https</i>Log in
+              </button>
+              <span class="has-error" if.bind="!isValid">User name or password incorrect.</span>
+            </div>
           </div>
-          <div class="col s12 m12 l12">
-            <md-input name="password" md-validate="true" md-type="password" md-label="enter password" md-value.bind="user.password & validate:rules"></md-input>
-          </div>
-          <div class="col s12 m12 l12">
-            <button md-button click.trigger="login()">
-              <i class="left material-icons">https</i>Log in
-            </button>
-            <span class="has-error" if.bind="!isValid">User name or password incorrect.</span>
-          </div>
-        </div>
-      </md-card>
-
+        </md-card>
+      </form>
     </div>
   </section>
 </template>
