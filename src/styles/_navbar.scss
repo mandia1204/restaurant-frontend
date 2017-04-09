@@ -1,3 +1,15 @@
-#nav-mobile .material-icons {
+.nav-bar {
   color: $secondary-color
+}
+
+#nav-mobile .material-icons {
+  @extend .nav-bar;
+}
+
+md-navbar .material-icons {
+  @extend .nav-bar;
+}
+
+.brand-logo {
+  padding-left: 20px !important;
 }

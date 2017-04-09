@@ -1,0 +1,11 @@
+<template bindable="router, authenticated, logout">
+  <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+    <a if.bind="!row.config.auth || (row.config.auth && authenticated)" data-toggle="collapse"
+    data-target="#skeleton-navigation-navbar-collapse.in" href.bind="row.href">
+      <i class="left material-icons">${row.config.icon}</i>${row.title}
+    </a>
+  </li>
+  <li>
+    <a if.bind="authenticated" click.delegate="logout()" data-toggle="collapse" data-target="#skeleton-navigation-navbar-collapse.in">Logout</a>
+  </li>
+</template>

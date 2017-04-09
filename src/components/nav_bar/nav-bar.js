@@ -10,6 +10,10 @@ export class NavBar {
     this.storage = storage;
   }
 
+  attached() {
+    $('.button-collapse').sideNav();
+  }
+
   logout() {
     this.storage.removeAuthToken();
     this.router.navigate('login');
