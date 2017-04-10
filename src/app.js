@@ -1,4 +1,5 @@
 import 'materialize-css';
+import 'fetch'; //only for ios devices that don't have latest version
 import { inject } from 'aurelia-framework';
 import { AuthService, FetchConfig } from 'aurelia-auth';
 import AuthorizeStep  from './routing/authorize-step';
