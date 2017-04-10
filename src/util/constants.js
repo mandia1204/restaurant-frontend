@@ -1,7 +1,7 @@
 /* global window */
 
 export const constants = {
-  baseUrl: 'https://192.168.99.100:8443',
+  baseUrl: 'https://192.168.99.100:8443', //change to 192.168.1.129 to test iphone
   //urlRedirect: window.env.URL_REDIRECT,
   AURELIA_TOKEN: 'aurelia_token',
   ACCESS_TOKEN: 'access_token',
