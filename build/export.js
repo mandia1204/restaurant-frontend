@@ -10,7 +10,11 @@ module.exports = {
     'jspm_packages/system.js',
     'jspm_packages/system-polyfills.js',
     'jspm_packages/system-csp-production.js',
-    'dist/styles.css'
+    'dist/styles.css',
+    'empty.css',
+    'fonts/roboto/Roboto-Regular.woff2',
+    'fonts/roboto/Roboto-Regular.woff',
+    'fonts/roboto/Roboto-Regular.ttf'
   ],
   // this section lists any jspm packages that have
   // unbundled resources that need to be exported.
@@ -22,11 +26,6 @@ module.exports = {
       // include font-awesome.css and its fonts files
       'font-awesome', [
         '/css/font-awesome.min.css',
-        '/fonts/*'
-      ]
-    ], [
-      // include bootstrap's font files
-      'bootstrap', [
         '/fonts/*'
       ]
     ], [

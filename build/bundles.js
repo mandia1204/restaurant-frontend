@@ -29,8 +29,6 @@ module.exports = {
         'aurelia-logging-console',
         'aurelia-auth',
         'aurelia-validation',
-        'bootstrap',
-        'bootstrap/css/bootstrap.css!text',
         'fetch',
         'jquery',
         'text',

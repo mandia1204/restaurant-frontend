@@ -84,7 +84,6 @@
       "aurelia-templating-router": "npm:aurelia-templating-router@^1.0.0",
       "aurelia-validation": "npm:aurelia-validation@^1.0.0",
       "bluebird": "npm:bluebird@3.4.1",
-      "bootstrap": "github:twbs/bootstrap@^3.3.6",
       "chart.js": "npm:chart.js@^2.5.0",
       "css": "github:systemjs/plugin-css@0.1.20",
       "fetch": "github:github/fetch@^1.0.0",
