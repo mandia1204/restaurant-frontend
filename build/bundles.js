@@ -28,10 +28,19 @@ module.exports = {
         'aurelia-history-browser',
         'aurelia-logging-console',
         'aurelia-auth',
+        'aurelia-validation',
         'bootstrap',
         'bootstrap/css/bootstrap.css!text',
         'fetch',
-        'jquery'
+        'jquery',
+        'text',
+        '[materialize-css/dist/js/materialize.js]',
+        'aurelia-materialize-bridge',
+        'aurelia-materialize-bridge/**/*.js',
+        'aurelia-materialize-bridge/**/*.html!text',
+        'aurelia-materialize-bridge/**/*.css!text',
+        'css',
+        'chart.js'
       ],
       'options': {
         'inject': true,
