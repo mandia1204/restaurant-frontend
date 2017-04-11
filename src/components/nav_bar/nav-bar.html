@@ -6,7 +6,7 @@
   </style>
   <require from="./nav-bar-list.html"></require>
   <md-navbar md-fixed="true">
-    <a if.bind="authenticated" md-sidenav-collapse="ref.bind: sideNav;" class="left hide-on-large-only"
+    <a show.bind="authenticated" md-sidenav-collapse="ref.bind: sideNav;" class="left hide-on-large-only"
       style="cursor: pointer; padding: 0 10px;"><i class="material-icons">menu</i>
     </a>
     <a href="#" class="brand-logo">${router.title}</a>
