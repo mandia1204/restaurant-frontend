@@ -1,0 +1,22 @@
+FROM node:7.8.0
+
+WORKDIR /var/www/
+
+RUN npm install -g gulp jspm
+
+# Install app dependencies
+COPY ./package.json /var/www
+
+RUN npm install
+
+RUN jspm install
+
+COPY . /var/www
+
+RUN npm run export
+
+#RUN chmod +x /var/www/bootstrap-production.sh
+
+#ENTRYPOINT ["/var/www/bootstrap-production.sh"]
+
+CMD ["/bin/bash"]
