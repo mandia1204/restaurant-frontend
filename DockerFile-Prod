@@ -3,9 +3,12 @@ FROM node:7.8.0
 WORKDIR /var/www/
 
 RUN npm install -g gulp jspm
+RUN jspm config registries.github.auth d9d432f790c97d6cc34a18c3eac6858a9eea76f7
 
 # Install app dependencies
 COPY ./package.json /var/www
+
+COPY ./config.js /var/www
 
 RUN npm install
 
