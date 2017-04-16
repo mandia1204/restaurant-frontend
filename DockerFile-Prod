@@ -15,8 +15,4 @@ COPY . /var/www
 
 RUN npm run export
 
-#RUN chmod +x /var/www/bootstrap-production.sh
-
-#ENTRYPOINT ["/var/www/bootstrap-production.sh"]
-
 CMD ["/bin/bash"]
