@@ -10,6 +10,12 @@ export class Dashboard {
     this.service = service;
     this.chartBuilder = chartBuilder;
     this.chartFormatter = chartFormatter;
+    this.cardData = {
+      clients: { title: 'New Clients', number: '555', body: '15% from yesterday', color: 'green'},
+      invoices: { title: 'New Invoice', number: '1800', body: '3% from last month', color: 'pink'},
+      profit: { title: 'Today Profit', number: '$806.52', body: '80% from yesterday', color: 'blue-grey'},
+      sales: { title: 'Total Sales', number: '$8990.63', body: '70% last month', color: 'purple'}
+    };
   }
 
   attached() {

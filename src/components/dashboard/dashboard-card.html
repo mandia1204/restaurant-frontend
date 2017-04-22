@@ -1,0 +1,17 @@
+<template bindable="opts">
+  <div class="card">
+    <div class="card-content  ${opts.color} white-text">
+        <p class="card-stats-title">
+          <i class="mdi-social-group-add"></i> ${opts.title}
+        </p>
+        <h4 class="card-stats-number">${opts.number}</h4>
+        <p class="card-stats-compare">
+          <i class="mdi-hardware-keyboard-arrow-up"></i><span class="text-lighten-5">${opts.body}</span>
+        </p>
+    </div>
+    <div class="card-action  ${opts.color} darken-2">
+        <div id="clients-bar" class="center-align">
+        </div>
+    </div>
+  </div>
+</template>
