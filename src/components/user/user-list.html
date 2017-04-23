@@ -1,0 +1,18 @@
+<template bindable="users">
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="user of users">
+        <td>${user.userName}</td>
+        <td>${user.name}</td>
+        <td>${user.role}</td>
+      </tr>
+    </tbody>
+  </table>
+</template>

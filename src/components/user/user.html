@@ -1,0 +1,24 @@
+<template>
+  <div>
+    <h4>Manage Users</h4>
+    <require from="./user-list.html"></require>
+    <div class="container">
+      <div>
+        <user-list users.bind="usersFiltered"></user-list>
+      </div>
+      <div>
+        <md-pagination md-on-page-changed.delegate="search($event)"
+        md-pages.bind="numberOfPages" md-active-page.bind="activePage" md-visible-page-links="10">
+        </md-pagination>
+        <!-- <md-pagination md-show-first-last.two-way="showFirstLast"
+        md-show-prev-next.two-way="showPrevNext" md-show-page-links.two-way="showPageLinks"
+        md-pages.bind="overallPageLinks" md-visible-page-links.two-way="visiblePageLinks"
+        md-active-page.bind="activePage"></md-pagination> -->
+
+      </div>
+      <div>
+        active page: ${activePage}
+      </div>
+    </div>
+  </div>
+</template>
