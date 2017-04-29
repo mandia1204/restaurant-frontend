@@ -7,41 +7,16 @@
           <canvas id="ventas-anuales-chart"></canvas>
         </div>
       </div>
-      <div class="dashboard-block bar-block">
-        <div class="dashboard-chart">
-          <canvas id="ventas-semanales-chart"></canvas>
-        </div>
-      </div>
-      <div class="dashboard-block bar-block">
-        <div class="dashboard-chart">
-          <canvas id="ventas-compras-chart"></canvas>
-        </div>
-      </div>
-    </div>
-    <div id="secondary-info" class="row">
-      <div class="dashboard-block bar-block">
-        <div class="dashboard-chart">
-          <canvas id="platos-vendidos-chart"></canvas>
-        </div>
-      </div>
-      <div class="dashboard-block pie-block">
-        <div class="dashboard-chart">
-          <canvas id="productos-vendidos-chart"></canvas>
-        </div>
-      </div>
     </div>
     <div id="card-stats" class="row">
       <div class="col s12 m6 l3">
-        <dashboard-card opts.bind="cardData['clients']"></dashboard-card>
+        <dashboard-card opts.bind="cardData['PRODUCCION_DIA']"></dashboard-card>
       </div>
       <div class="col s12 m6 l3">
-        <dashboard-card opts.bind="cardData['invoices']"></dashboard-card>
+        <dashboard-card opts.bind="cardData['VENTA_DIA']"></dashboard-card>
       </div>
       <div class="col s12 m6 l3">
-        <dashboard-card opts.bind="cardData['profit']"></dashboard-card>
-      </div>
-      <div class="col s12 m6 l3">
-        <dashboard-card opts.bind="cardData['sales']"></dashboard-card>
+        <dashboard-card opts.bind="cardData['PAX_DIA']"></dashboard-card>
       </div>
     </div>
   </div>
