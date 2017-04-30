@@ -1,11 +1,17 @@
 <template>
   <require from="./dashboard-card.html"></require>
+  <require from="./anulaciones-list.html"></require>
   <div>
     <div id="primary-info" class="row">
       <div class="dashboard-block bar-block">
         <div class="dashboard-chart">
           <canvas id="ventas-anuales-chart"></canvas>
         </div>
+      </div>
+    </div>
+    <div id="secondary-info" class="row">
+      <div class="col s12 m4 l3">
+        <anulaciones-list class="anulaciones" anulaciones.bind="anulaciones"></anulaciones-list>
       </div>
     </div>
     <div id="card-stats" class="row">
@@ -17,6 +23,9 @@
       </div>
       <div class="col s12 m6 l3">
         <dashboard-card opts.bind="cardData['PAX_DIA']"></dashboard-card>
+      </div>
+      <div class="col s12 m6 l3">
+        <dashboard-card opts.bind="cardData['TICKET_PROMEDIO_DIA']"></dashboard-card>
       </div>
     </div>
   </div>

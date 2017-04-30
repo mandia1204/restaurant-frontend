@@ -53,3 +53,14 @@
 #card-stats .card-content {
   text-align: center;
 }
+
+.anulaciones {
+  .card {
+    height: 294px;
+  }
+
+  .card-content {
+    max-height: 290px;
+    overflow-y: auto;
+  }
+}

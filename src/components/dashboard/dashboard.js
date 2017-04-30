@@ -20,11 +20,17 @@ export class Dashboard {
   renderDashboard(data) {
     this.renderCards(data);
     this.renderCharts(data);
+    this.renderAnulaciones(data);
+  }
+
+  renderAnulaciones(data) {
+    this.anulaciones = data.anulaciones;
   }
 
   renderCards(data) {
     Object.keys(data.cards).forEach(k => {
-      data.cards[k].color = CardOptions[k].color;
+      Object.assign(data.cards[k], CardOptions[k]);
+      data.cards[k].value = CardOptions[k].format.replace('${0}', data.cards[k].value);
     });
     this.cardData = data.cards;
   }

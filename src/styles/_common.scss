@@ -4,6 +4,7 @@ $primary-color:#e67e22;
 $secondary-color:black;
 $list-edit-active-color:#E0F2F1;
 $button-floating-background: black;
+$table-striped-color: lighten($primary-color, 35%);
 
 .title {
   color: $secondary-color;
