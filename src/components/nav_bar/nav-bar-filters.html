@@ -1,0 +1,9 @@
+<template bindable="years, onChange">
+  <div>
+    <select md-select change.delegate="onChange({ev:$event})">
+      <option repeat.for="year of years" value="${year}">
+        ${year}
+      </option>
+    </select>
+  </div>
+</template>

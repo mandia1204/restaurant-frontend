@@ -24,6 +24,15 @@ export default class ChartBuilder {
             beginAtZero: true
           }
         }]
+      },
+      layout: {
+        padding: 5
+      },
+      title: {
+        display: true,
+        text: 'Ventas anuales',
+        fontSize: 13.5,
+        position: 'left'
       }
     };
   }

@@ -29,6 +29,7 @@ module.exports = {
         'aurelia-logging-console',
         'aurelia-auth',
         'aurelia-validation',
+        'aurelia-event-aggregator',
         'fetch',
         'jquery',
         'text',

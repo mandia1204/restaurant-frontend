@@ -1,21 +1,35 @@
 import { inject } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
 import { DashboardService } from './services/dashboard-service';
 import ChartBuilder from '../../chart/chart-builder';
 import ChartFormatter from '../../chart/chart-formatter';
 import { CardOptions } from '../../util/card-options';
 
-@inject(DashboardService, ChartBuilder, ChartFormatter)
+@inject(EventAggregator, DashboardService, ChartBuilder, ChartFormatter)
 export class Dashboard {
 
-  constructor(service, chartBuilder, chartFormatter) {
+  constructor(eventAggregator, service, chartBuilder, chartFormatter) {
+    this.ea = eventAggregator;
     this.service = service;
     this.chartBuilder = chartBuilder;
     this.chartFormatter = chartFormatter;
-    this.filters = {anio: 2017, mes: 4};
   }
 
   attached() {
-    this.service.getDashboard(this.filters).then(this.renderDashboard.bind(this));
+    this.subscriber = this.ea.subscribe('nav-bar-year-select-changed', response => {
+      //console.log(response.year);
+    });
+
+    const filters = { anio: '2017', mes: 4};
+    this.retrieveDashboard(filters);
+  }
+
+  detached() {
+    this.subscriber.dispose();
+  }
+
+  retrieveDashboard(filters) {
+    this.service.getDashboard(filters).then(this.renderDashboard.bind(this));
   }
 
   renderDashboard(data) {

@@ -5,16 +5,22 @@
     }
   </style>
   <require from="./nav-bar-list.html"></require>
+  <require from="./nav-bar-filters.html"></require>
+
   <md-navbar md-fixed="true">
     <a show.bind="authenticated" md-sidenav-collapse="ref.bind: sideNav;" class="left hide-on-large-only"
       style="cursor: pointer; padding: 0 10px;"><i class="material-icons">menu</i>
     </a>
-    <a href="#" class="brand-logo">${router.title}</a>
+    <div>
+        <a href="#!" class="brand-logo"><i class="material-icons">lightbulb_outline</i>${router.title}</a>
+    </div>
+    <div class="filters" style="width: 80px">
+      <nav-bar-filters years.bind="years" on-change.call="yearSelectChange(ev)"></nav-bar-filters>
+    </div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <nav-bar-list router.bind="router" authenticated.bind="authenticated" logout.call="logout()"></nav-bar-list>
     </ul>
   </md-navbar>
-
   <md-sidenav md-close-on-click="true" view-model.ref="sideNav">
     <ul>
       <nav-bar-list router.bind="router" authenticated.bind="authenticated" logout.call="logout()"></nav-bar-list>
