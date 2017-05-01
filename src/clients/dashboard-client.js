@@ -8,7 +8,7 @@ export class DashboardClient {
     this.client = client;
   }
 
-  getDashboard() {
-    return this.client.getFrom('/dashboardApi/api/dashboard').then(response => response.json());
+  getDashboard(querystring) {
+    return this.client.getFrom(`/dashboardApi/api/dashboard?${querystring}`).then(response => response.json());
   }
 }

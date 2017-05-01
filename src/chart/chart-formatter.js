@@ -1,14 +1,31 @@
-import { Colors } from './colors';
+import { Colors } from '../util/colors';
 import { ChartColors } from './chart-colors';
 
 export default class ChartFormatter {
 
   constructor() {
-    this.formats = {'bar': this._barFormat, 'line': this._lineFormat, 'pie': this._pieFormat};
+    this.formats = {'bar': this._barFormat, 'line': this._lineFormat, 'pie': this._pieFormat, 'radar': this._radarFormat};
   }
 
-  format(chart, type) {
+  format(data, type) {
+    const chart = this._generateChartBody(data);
     return this.formats[type](chart, ChartColors[type]);
+  }
+  //converts key value/pairs into a chart object
+  _generateChartBody(data) {
+    const chart = { 'labels': [], 'datasets': [] };
+    Object.keys(data).forEach((k, index) => {
+      const ds = { 'label': k, data: []};
+      const firstIteration = index === 0;
+      Object.keys(data[k]).forEach(j => {
+        if (firstIteration) {
+          chart.labels.push(j);
+        }
+        ds.data.push(data[k][j]);
+      });
+      chart.datasets.push(ds);
+    });
+    return chart;
   }
 
   _barFormat(chart, chartColors) {
@@ -42,6 +59,10 @@ export default class ChartFormatter {
       ds.backgroundColor = chartColors.map(c=> Colors[c].normal);
       ds.hoverBackgroundColor = chartColors.map(c=> Colors[c].dark);
     });
+    return chart;
+  }
+
+  _radarFormat(chart, chartColors) {
     return chart;
   }
 }

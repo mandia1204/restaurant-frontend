@@ -8,7 +8,8 @@ export class DashboardService {
     this.client = client;
   }
 
-  getDashboard() {
-    return this.client.getDashboard();
+  getDashboard(params) {
+    const queryStringParams = $.param(params);
+    return this.client.getDashboard(queryStringParams);
   }
 }
