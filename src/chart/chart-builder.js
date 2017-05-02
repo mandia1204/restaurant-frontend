@@ -14,6 +14,13 @@ export default class ChartBuilder {
       data: data,
       options: this.defaultOpts[type]
     });
+    return myChart;
+  }
+
+  update(chart, data) {
+    chart.data.labels = data.labels;
+    chart.data.datasets = data.datasets;
+    chart.update();
   }
 
   _barOptions() {

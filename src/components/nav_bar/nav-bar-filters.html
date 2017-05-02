@@ -1,6 +1,6 @@
 <template bindable="years, onChange">
   <div>
-    <select md-select change.delegate="onChange({ev:$event})">
+    <select id="nav-bar-select-year" md-select change.delegate="onChange({ev:$event})">
       <option repeat.for="year of years" value="${year}">
         ${year}
       </option>

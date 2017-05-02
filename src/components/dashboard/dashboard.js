@@ -16,12 +16,9 @@ export class Dashboard {
   }
 
   attached() {
-    this.subscriber = this.ea.subscribe('nav-bar-year-select-changed', response => {
-      //console.log(response.year);
-    });
-
-    const filters = { anio: '2017', mes: 4};
-    this.retrieveDashboard(filters);
+    this.subscriber = this.ea.subscribe('nav-bar-year-select-changed', this.filtersChanged.bind(this));
+    const filters = { anio: document.getElementById('nav-bar-select-year').value, mes: 4};
+    this.retrieveDashboard(filters).then(this.renderDashboard.bind(this));
   }
 
   detached() {
@@ -29,7 +26,23 @@ export class Dashboard {
   }
 
   retrieveDashboard(filters) {
-    this.service.getDashboard(filters).then(this.renderDashboard.bind(this));
+    return this.service.getDashboard(filters);
+  }
+
+  filtersChanged(response) {
+    const filters = { anio: response.year, mes: 4};
+    this.retrieveDashboard(filters).then(this.refreshDashboard.bind(this));
+  }
+
+  refreshDashboard(data) {
+    const ventasAnualesData = this.formatChart(data, 'VENTAS_ANUALES', 'bar');
+    const anulacionesDelMesData = this.formatChart(data, 'ANULACIONES_DEL_MES', 'radar');
+
+    this.chartBuilder.update(this.ventasAnualesChart, ventasAnualesData);
+    this.chartBuilder.update(this.anulacionesDelMesChart, anulacionesDelMesData);
+
+    this.renderCards(data);
+    this.renderAnulaciones(data);
   }
 
   renderDashboard(data) {
@@ -49,13 +62,17 @@ export class Dashboard {
     });
     this.cardData = data.cards;
   }
+  //converts data from api to chart model
+  formatChart(data, par, type) {
+    const chartData = data.charts.filter(c=>c.name === par)[0].data;
+    return this.chartFormatter.format(chartData, type);
+  }
 
   renderCharts(data) {
-    data.get = (par) => data.charts.filter(c=>c.name === par)[0].data;
-    const ventasAnuales = this.chartFormatter.format(data.get('VENTAS_ANUALES'), 'bar');
-    const anulacionesDelMes = this.chartFormatter.format(data.get('ANULACIONES_DEL_MES'), 'radar');
+    const ventasAnualesData = this.formatChart(data, 'VENTAS_ANUALES', 'bar');
+    const anulacionesDelMesData = this.formatChart(data, 'ANULACIONES_DEL_MES', 'radar');
 
-    this.chartBuilder.build('ventas-anuales-chart', ventasAnuales, 'bar');
-    this.chartBuilder.build('anulaciones-del-mes-chart', anulacionesDelMes, 'radar');
+    this.ventasAnualesChart = this.chartBuilder.build('ventas-anuales-chart', ventasAnualesData, 'bar');
+    this.anulacionesDelMesChart = this.chartBuilder.build('anulaciones-del-mes-chart', anulacionesDelMesData, 'radar');
   }
 }
