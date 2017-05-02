@@ -21,8 +21,16 @@ export class NavBar {
     this.router.navigate('login');
   }
 
+  refreshDashboard() {
+    this.notifyDashboardFiltersChanged();
+  }
+
+  notifyDashboardFiltersChanged() {
+    this.ea.publish('nav-bar-dashboard-filter-changed', this.filters);
+  }
+
   selectChange(ev) {
     this.filters[ev.srcElement.name] = ev.srcElement.value;
-    this.ea.publish('nav-bar-dashboard-filter-changed', this.filters);
+    this.notifyDashboardFiltersChanged();
   }
 }
