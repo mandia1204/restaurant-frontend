@@ -14,8 +14,8 @@
     <div>
         <a href="#!" class="brand-logo"><i class="material-icons">lightbulb_outline</i>${router.title}</a>
     </div>
-    <div class="filters" style="width: 80px">
-      <nav-bar-filters years.bind="years" on-change.call="yearSelectChange(ev)"></nav-bar-filters>
+    <div class="filters" style="width: 200px">
+      <nav-bar-filters years.bind="years" months.bind="months" on-change.call="selectChange(ev)"></nav-bar-filters>
     </div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <nav-bar-list router.bind="router" authenticated.bind="authenticated" logout.call="logout()"></nav-bar-list>

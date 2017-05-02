@@ -16,7 +16,7 @@ export class Dashboard {
   }
 
   attached() {
-    this.subscriber = this.ea.subscribe('nav-bar-year-select-changed', this.filtersChanged.bind(this));
+    this.subscriber = this.ea.subscribe('nav-bar-dashboard-filter-changed', this.filtersChanged.bind(this));
     const filters = { anio: document.getElementById('nav-bar-select-year').value, mes: 4};
     this.retrieveDashboard(filters).then(this.renderDashboard.bind(this));
   }
@@ -30,7 +30,7 @@ export class Dashboard {
   }
 
   filtersChanged(response) {
-    const filters = { anio: response.year, mes: 4};
+    const filters = { anio: response.navFilterYear, mes: response.navFilterMonth };
     this.retrieveDashboard(filters).then(this.refreshDashboard.bind(this));
   }
 

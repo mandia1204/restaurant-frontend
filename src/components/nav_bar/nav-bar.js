@@ -1,6 +1,7 @@
 import { bindable, inject } from 'aurelia-framework';
 import LocalStorageManager from '../../util/local-storage-manager';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { years, months } from '../../util/constants';
 
 @inject(EventAggregator, LocalStorageManager)
 export class NavBar {
@@ -10,7 +11,9 @@ export class NavBar {
   constructor(eventAggregator, storage) {
     this.storage = storage;
     this.ea = eventAggregator;
-    this.years = ['2015', '2016', '2017'];
+    this.years = years;
+    this.months = months;
+    this.filters = { navFilterYear: '2017', navFilterMonth: '4'};
   }
 
   logout() {
@@ -18,7 +21,8 @@ export class NavBar {
     this.router.navigate('login');
   }
 
-  yearSelectChange(ev) {
-    this.ea.publish('nav-bar-year-select-changed', { year: ev.srcElement.value});
+  selectChange(ev) {
+    this.filters[ev.srcElement.name] = ev.srcElement.value;
+    this.ea.publish('nav-bar-dashboard-filter-changed', this.filters);
   }
 }
