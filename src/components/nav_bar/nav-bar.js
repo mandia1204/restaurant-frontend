@@ -1,4 +1,4 @@
-import { bindable, inject } from 'aurelia-framework';
+import { bindable, inject, computedFrom } from 'aurelia-framework';
 import LocalStorageManager from '../../util/local-storage-manager';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { years, months } from '../../util/constants';
@@ -19,6 +19,14 @@ export class NavBar {
   logout() {
     this.storage.removeAuthToken();
     this.router.navigate('login');
+  }
+
+  @computedFrom('router.currentInstruction.config.showNavFilters')
+  get showFilters() {
+    if (this.router.currentInstruction === null) {
+      return false;
+    }
+    return this.router.currentInstruction.config.showNavFilters;
   }
 
   refreshDashboard() {
