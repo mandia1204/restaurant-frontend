@@ -31,8 +31,7 @@ export class Dashboard {
   }
 
   filtersChanged(response) {
-    //const ops = response.type === 'month' ? Ops.monthly : Ops.yearly;
-    const ops = Ops[response.type]; // === 'month' ? Ops.monthly : Ops.yearly;
+    const ops = Ops[response.type];
     const filters = { anio: response.navFilterYear, mes: response.navFilterMonth, ops: ops };
     this.retrieveDashboard(filters).then(this.refreshDashboard.bind(this));
   }

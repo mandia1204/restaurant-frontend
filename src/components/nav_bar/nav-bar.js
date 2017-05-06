@@ -13,7 +13,7 @@ export class NavBar {
     this.ea = eventAggregator;
     this.years = years;
     this.months = months;
-    this.filters = { navFilterYear: '2017', navFilterMonth: '4', type: 'year'};
+    this.filters = { navFilterYear: '2017', navFilterMonth: '4', type: ''};
   }
 
   logout() {

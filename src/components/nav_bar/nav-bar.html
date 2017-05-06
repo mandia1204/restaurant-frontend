@@ -18,13 +18,14 @@
       <nav-bar-filters years.bind="years" months.bind="months" on-change.call="selectChange(ev)"></nav-bar-filters>
     </div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <nav-bar-list router.bind="router" authenticated.bind="authenticated"
+      <nav-bar-list router.bind="router" show-filters.bind="showFilters" authenticated.bind="authenticated"
       logout.call="logout()" refresh-dashboard.call="refreshDashboard()"></nav-bar-list>
     </ul>
   </md-navbar>
   <md-sidenav md-close-on-click="true" view-model.ref="sideNav">
     <ul>
-      <nav-bar-list router.bind="router" authenticated.bind="authenticated" logout.call="logout()"></nav-bar-list>
+      <nav-bar-list router.bind="router" show-filters.bind="showFilters" authenticated.bind="authenticated"
+      logout.call="logout()" refresh-dashboard.call="refreshDashboard()"></nav-bar-list>
     </ul>
   </md-sidenav>
 </template>

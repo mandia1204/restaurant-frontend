@@ -1,7 +1,8 @@
-<template bindable="router, authenticated, logout, refreshDashboard">
-  <li>
-    <a if.bind="authenticated" click.delegate="refreshDashboard()">
-      <i class="left material-icons">autorenew</i>
+<template bindable="router, authenticated, showFilters, logout, refreshDashboard">
+  <li if.bind="authenticated && showFilters">
+    <a href="javascript:void()" click.delegate="refreshDashboard()" data-toggle="collapse"
+    data-target="#skeleton-navigation-navbar-collapse.in">
+      <i class="left material-icons">autorenew</i>&nbsp;
     </a>
   </li>
   <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
