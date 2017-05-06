@@ -12,9 +12,9 @@
       style="cursor: pointer; padding: 0 10px;"><i class="material-icons">menu</i>
     </a>
     <div>
-        <a href="#!" class="brand-logo"><i class="material-icons">lightbulb_outline</i>${router.title}</a>
+      <a href="#!" class="brand-logo"><i class="material-icons">lightbulb_outline</i>${router.title}</a>
     </div>
-    <div show.bind="authenticated && showFilters" class="filters" style="width: 200px">
+    <div show.bind="authenticated && showFilters" class="filters-wrapper hide-on-med-and-down" style="width: 200px">
       <nav-bar-filters years.bind="years" months.bind="months" on-change.call="selectChange(ev)"></nav-bar-filters>
     </div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">

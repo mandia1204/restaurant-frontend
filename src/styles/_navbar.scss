@@ -14,6 +14,12 @@ md-navbar .material-icons {
   padding-left: 20px !important;
 }
 
-.filters {
-  position: absolute; left: 50%;
+.filters-wrapper {
+  position: absolute; left: 30%;
+  background-color: white;
+  max-height: 64px;
+  color:$primary-color;
+  .filter-container {
+    width:200px;
+  }
 }
