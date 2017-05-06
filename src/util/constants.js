@@ -21,3 +21,10 @@ export const months = [
   {name: 'Noviembre', value: 11},
   {name: 'Diciembre', value: 12}
 ];
+
+export const Ops = {
+  all: 'PDD,VA,VDD,PXD,ANL,ANM',
+  monthly: 'ANM',
+  yearly: 'VA,ANM',
+  daily: 'PDD,VDD,PXD,ANL'
+};

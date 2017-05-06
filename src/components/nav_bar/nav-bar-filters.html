@@ -1,14 +1,14 @@
 <template bindable="years, months, onChange">
   <div class="row" style="width:200px">
     <div class="col" style="width:80px">
-      <select name="navFilterYear" id="nav-bar-select-year" md-select change.delegate="onChange({ev:$event})">
+      <select name="navFilterYear" filter="yearly" id="nav-bar-select-year" md-select change.delegate="onChange({ev:$event})">
         <option repeat.for="year of years" value="${year}">
           ${year}
         </option>
       </select>
     </div>
     <div class="col" style="width:120px">
-      <select name="navFilterMonth" id="nav-bar-select-month" md-select change.delegate="onChange({ev:$event})">
+      <select name="navFilterMonth" filter="monthly" id="nav-bar-select-month" md-select change.delegate="onChange({ev:$event})">
         <option repeat.for="month of months" value="${month.value}">
           ${month.name}
         </option>

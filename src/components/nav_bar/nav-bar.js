@@ -13,7 +13,7 @@ export class NavBar {
     this.ea = eventAggregator;
     this.years = years;
     this.months = months;
-    this.filters = { navFilterYear: '2017', navFilterMonth: '4'};
+    this.filters = { navFilterYear: '2017', navFilterMonth: '4', type: 'year'};
   }
 
   logout() {
@@ -30,6 +30,7 @@ export class NavBar {
   }
 
   refreshDashboard() {
+    this.filters.type = 'all';
     this.notifyDashboardFiltersChanged();
   }
 
@@ -39,6 +40,7 @@ export class NavBar {
 
   selectChange(ev) {
     this.filters[ev.srcElement.name] = ev.srcElement.value;
+    this.filters.type = ev.srcElement.attributes.filter.value;
     this.notifyDashboardFiltersChanged();
   }
 }
