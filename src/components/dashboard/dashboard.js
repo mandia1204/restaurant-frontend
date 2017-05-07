@@ -5,15 +5,17 @@ import ChartBuilder from '../../chart/chart-builder';
 import ChartFormatter from '../../chart/chart-formatter';
 import { CardOptions } from '../../util/card-options';
 import { Ops } from '../../util/constants';
+import AnulacionesFormatter from './formatters/anulaciones-formatter';
 
-@inject(EventAggregator, DashboardService, ChartBuilder, ChartFormatter)
+@inject(EventAggregator, DashboardService, ChartBuilder, ChartFormatter, AnulacionesFormatter)
 export class Dashboard {
 
-  constructor(eventAggregator, service, chartBuilder, chartFormatter) {
+  constructor(eventAggregator, service, chartBuilder, chartFormatter, anulacionesFormatter) {
     this.ea = eventAggregator;
     this.service = service;
     this.chartBuilder = chartBuilder;
     this.chartFormatter = chartFormatter;
+    this.anulacionesFormatter = anulacionesFormatter;
   }
 
   attached() {
@@ -56,7 +58,7 @@ export class Dashboard {
 
   renderAnulaciones(data) {
     if (data.anulaciones) {
-      this.anulaciones = data.anulaciones;
+      this.anulaciones = this.anulacionesFormatter.format(data.anulaciones);
     }
   }
 

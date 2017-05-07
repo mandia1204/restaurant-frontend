@@ -1,26 +1,21 @@
 <template bindable="anulaciones">
-
   <div class="card">
     <div class="card-content">
       <span class="card-title grey-text text-darken-4">Anulaciones
         <i class="mdi-navigation-close right"></i>
       </span>
-      <table class="responsive-table striped">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Tipo</th>
-                <th>Observación</th>
-                <!-- <th>Anulador</th> -->
-            </tr>
-        </thead>
-        <tr repeat.for="anulacion of anulaciones">
-          <td>${anulacion.fecha}</td>
-          <td>${anulacion.tipo}</td>
-          <td>${anulacion.observacion}</td>
-          <!-- <td>${anulacion.anulador}</td> -->
-        </tr>
-      </table>
+      <div class="anulaciones-list-wrapper">
+        <md-collection>
+          <md-collection-item repeat.for="anulacion of anulaciones" class="accent-text avatar">
+          <i class="circle material-icons ${anulacion.color}">${anulacion.icon}</i>
+          <span class="title">${anulacion.tipo}</span>
+          <p>${anulacion.observacion}</p>
+          <div class="secondary-content">
+            <span>${anulacion.fecha}</span>
+          </div>
+        </md-collection-item>
+        </md-collection>
+      </div>
     </div>
   </div>
 </template>
