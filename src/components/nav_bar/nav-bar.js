@@ -39,8 +39,9 @@ export class NavBar {
   }
 
   selectChange(ev) {
-    this.filters[ev.srcElement.name] = ev.srcElement.value;
-    this.filters.type = ev.srcElement.attributes.filter.value;
+    var target = ev.target || ev.srcElement;
+    this.filters[target.name] = target.value;
+    this.filters.type = target.attributes.filter.value;
     this.notifyDashboardFiltersChanged();
   }
 }
