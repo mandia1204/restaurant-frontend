@@ -5,7 +5,7 @@ export const ChartColors = {
 };
 
 export const ChartOptions = {
-  'VENTAS_ANUALES': { title: 'Ventas anuales'},
-  'ANULACIONES_DEL_MES': { title: 'Anulaciones del mes'},
-  'PRODUCTOS_VENDIDOS_DEL_MES': { title: 'Productos vendidos'}
+  'VENTAS_ANUALES': { title: { text: 'Ventas anuales', position: 'left'} },
+  'ANULACIONES_DEL_MES': { title: { text: 'Anulaciones del mes', position: 'top'} },
+  'PRODUCTOS_VENDIDOS_DEL_MES': { title: { text: 'Productos vendidos', position: 'top'} }
 };

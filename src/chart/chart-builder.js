@@ -3,7 +3,11 @@ import Chart from 'chart.js';
 export default class ChartBuilder {
 
   constructor() {
-    this.defaultOpts = { 'pie': this._pieOptions(), 'bar': this._barOptions(), 'line': this._barOptions(), 'radar': this._radarOptions() };
+    this.defaultOpts = { 'pie': this._pieOptions,
+                         'bar': this._barOptions,
+                         'line': this._barOptions,
+                         'radar': this._radarOptions
+                       };
   }
 
   build(id, chartData, type) {
@@ -14,7 +18,7 @@ export default class ChartBuilder {
     const myChart = new Chart(ctx, {
       type: type,
       data: data,
-      options: this.defaultOpts[type]
+      options: this.defaultOpts[type](opts)
     });
     return myChart;
   }
@@ -25,7 +29,7 @@ export default class ChartBuilder {
     chart.update();
   }
 
-  _barOptions() {
+  _barOptions(opts) {
     return {
       scales: {
         yAxes: [{
@@ -38,23 +42,29 @@ export default class ChartBuilder {
         padding: 5
       },
       title: {
-        display: true,
-        text: 'Ventas anuales',
+        display: opts.title? true :false,
+        text: opts.title.text,
         fontSize: 13.5,
-        position: 'left'
+        position: opts.title.position
       }
     };
   }
 
-  _pieOptions() {
+  _pieOptions(opts) {
     return {
       animation: {
         animateScale: true
+      },
+      title: {
+        display: opts.title? true :false ,
+        text: opts.title.text,
+        fontSize: 13.5,
+        position: opts.title.position
       }
     };
   }
 
-  _radarOptions() {
+  _radarOptions(opts) {
     return {
       fontSize: 20,
       scale: {
@@ -71,10 +81,10 @@ export default class ChartBuilder {
         }
       },
       title: {
-        display: true,
-        text: 'Anulaciones del mes',
+        display: opts.title? true :false,
+        text: opts.title.text,
         fontSize: 13.5,
-        position: 'top'
+        position: opts.title.position
       },
       layout: {
         padding: 5
