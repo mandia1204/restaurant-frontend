@@ -4,6 +4,7 @@ export default class ChartBuilder {
 
   constructor() {
     this.defaultOpts = { 'pie': this._pieOptions,
+                         'horizontalBar': this._barOptions,
                          'bar': this._barOptions,
                          'line': this._barOptions,
                          'radar': this._radarOptions

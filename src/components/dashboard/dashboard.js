@@ -50,6 +50,12 @@ export class Dashboard {
     if (chartData.productosMes.data) {
       this.chartBuilder.update(this.productosDelMesChart, chartData.productosMes.data);
     }
+    if (chartData.mozoMes.data) {
+      this.chartBuilder.update(this.mozoDelMesChart, chartData.mozoMes.data);
+    }
+    if (chartData.platoMes.data) {
+      this.chartBuilder.update(this.platoDelMesChart, chartData.platoMes.data);
+    }
     this.renderCards(data);
     this.renderAnulaciones(data);
   }
@@ -89,6 +95,12 @@ export class Dashboard {
     }
     if (chartData.productosMes.data) {
       this.productosDelMesChart = this.chartBuilder.build('productos-vendidos-mes-chart', chartData.productosMes, 'pie');
+    }
+    if (chartData.mozoMes.data) {
+      this.mozoDelMesChart = this.chartBuilder.build('mozo-del-mes-chart', chartData.mozoMes, 'bar');
+    }
+    if (chartData.platoMes.data) {
+      this.platoDelMesChart = this.chartBuilder.build('plato-del-mes-chart', chartData.platoMes, 'horizontalBar');
     }
   }
 }

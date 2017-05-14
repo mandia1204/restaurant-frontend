@@ -13,7 +13,9 @@ export default class ChartsFormatter {
     return {
       ventasAnuales: this._getItem(data, 'VENTAS_ANUALES', 'bar'),
       anulacionesMes: this._getItem(data, 'ANULACIONES_DEL_MES', 'radar'),
-      productosMes: this._getItem(data, 'PRODUCTOS_VENDIDOS_DEL_MES', 'pie')
+      productosMes: this._getItem(data, 'PRODUCTOS_VENDIDOS_DEL_MES', 'pie'),
+      mozoMes: this._getItem(data, 'MOZO_DEL_MES', 'bar'),
+      platoMes: this._getItem(data, 'PLATOS_VENDIDOS_DEL_MES', 'bar')
     };
   }
 
@@ -33,7 +35,9 @@ export default class ChartsFormatter {
     return {
       ventasAnuales: ChartOptions['VENTAS_ANUALES'],
       anulacionesMes: ChartOptions['ANULACIONES_DEL_MES'],
-      productosMes: ChartOptions['PRODUCTOS_VENDIDOS_DEL_MES']
+      productosMes: ChartOptions['PRODUCTOS_VENDIDOS_DEL_MES'],
+      mozoMes: ChartOptions['MOZO_DEL_MES'],
+      platoMes: ChartOptions['PLATOS_VENDIDOS_DEL_MES']
     }
   }
 }
