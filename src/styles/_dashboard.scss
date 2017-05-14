@@ -20,7 +20,11 @@
 }
 
 .dashboard-chart {
-  border: 1px solid $primary-color;
+  // border: 1px solid $primary-color;
+  @extend .card;
+  .card-content {
+    padding: 2px !important;
+  }
 }
 
 .pie-style {
@@ -64,7 +68,7 @@
         color:red;
         font-size:1.2em;
         font-style:italic;
-        
+
       }
     }
   }

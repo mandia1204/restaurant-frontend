@@ -17,7 +17,7 @@ export default class AnulacionesFormatter {
         d.icon = 'keyboard';
         d.color = 'black';
         break;
-      case 'falta producción':
+      case 'producción':
         d.icon = 'error';
         d.color = 'red';
         break;

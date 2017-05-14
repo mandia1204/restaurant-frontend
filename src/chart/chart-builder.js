@@ -61,6 +61,13 @@ export default class ChartBuilder {
         text: opts.title.text,
         fontSize: 13.5,
         position: opts.title.position
+      },
+      legend: {
+        position: 'left',
+        labels: {
+          fontSize: 12,
+          boxWidth: 10
+        }
       }
     };
   }
@@ -93,8 +100,8 @@ export default class ChartBuilder {
       legend: {
         position: 'right',
         labels: {
-          fontSize: 15,
-          boxWidth: 60
+          fontSize: 12,
+          boxWidth: 10
         }
       }
     };

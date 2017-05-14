@@ -3,19 +3,25 @@
   <require from="./anulaciones-list.html"></require>
   <div>
     <div id="primary-info" class="row">
-      <div class="dashboard-block bar-block">
+      <div class="col s12 m12 l4">
         <div class="dashboard-chart">
-          <canvas id="ventas-anuales-chart"></canvas>
+          <div class="card-content">
+            <canvas id="ventas-anuales-chart"></canvas>
+          </div>
         </div>
       </div>
-      <div class="dashboard-block bar-block">
+      <div class="col s12 m12 l4">
         <div class="dashboard-chart">
-          <canvas id="mozo-del-mes-chart"></canvas>
+          <div class="card-content">
+            <canvas id="mozo-del-mes-chart"></canvas>
+          </div>
         </div>
       </div>
-      <div class="dashboard-block bar-block">
+      <div class="col s12 m12 l4">
         <div class="dashboard-chart">
-          <canvas id="plato-del-mes-chart"></canvas>
+          <div class="card-content">
+            <canvas id="plato-del-mes-chart"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -23,14 +29,18 @@
       <div class="col s12 m12 l4">
         <anulaciones-list class="anulaciones" anulaciones.bind="anulaciones"></anulaciones-list>
       </div>
-      <div class="dashboard-block bar-block">
-        <div class="dashboard-chart">
-          <canvas id="anulaciones-del-mes-chart" height="100" width="200"></canvas>
+      <div class="col s12 m6 l4">
+        <div class="card">
+          <div class="card-content">
+            <canvas id="anulaciones-del-mes-chart" height="80" width="150"></canvas>
+          </div>
         </div>
       </div>
-      <div class="dashboard-block pie-block">
-        <div class="dashboard-chart">
-          <canvas id="productos-vendidos-mes-chart"></canvas>
+      <div class="col s12 m6 l4">
+        <div class="card">
+          <div class="card-content">
+            <canvas id="productos-vendidos-mes-chart" height="80" width="150"></canvas>
+          </div>
         </div>
       </div>
     </div>

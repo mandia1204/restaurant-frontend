@@ -97,7 +97,7 @@ export class Dashboard {
       this.productosDelMesChart = this.chartBuilder.build('productos-vendidos-mes-chart', chartData.productosMes, 'pie');
     }
     if (chartData.mozoMes.data) {
-      this.mozoDelMesChart = this.chartBuilder.build('mozo-del-mes-chart', chartData.mozoMes, 'bar');
+      this.mozoDelMesChart = this.chartBuilder.build('mozo-del-mes-chart', chartData.mozoMes, 'horizontalBar');
     }
     if (chartData.platoMes.data) {
       this.platoDelMesChart = this.chartBuilder.build('plato-del-mes-chart', chartData.platoMes, 'horizontalBar');
