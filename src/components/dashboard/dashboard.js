@@ -2,19 +2,20 @@ import { inject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { DashboardService } from './services/dashboard-service';
 import ChartBuilder from '../../chart/chart-builder';
-import ChartFormatter from '../../chart/chart-formatter';
+import { ChartOptions } from '../../chart/chart-config';
 import { CardOptions } from '../../util/card-options';
 import { Ops } from '../../util/constants';
 import AnulacionesFormatter from './formatters/anulaciones-formatter';
+import ChartsFormatter from './formatters/charts-formatter';
 
-@inject(EventAggregator, DashboardService, ChartBuilder, ChartFormatter, AnulacionesFormatter)
+@inject(EventAggregator, DashboardService, ChartBuilder, ChartsFormatter, AnulacionesFormatter)
 export class Dashboard {
 
-  constructor(eventAggregator, service, chartBuilder, chartFormatter, anulacionesFormatter) {
+  constructor(eventAggregator, service, chartBuilder, chartsFormatter, anulacionesFormatter) {
     this.ea = eventAggregator;
     this.service = service;
     this.chartBuilder = chartBuilder;
-    this.chartFormatter = chartFormatter;
+    this.chartsFormatter = chartsFormatter;
     this.anulacionesFormatter = anulacionesFormatter;
   }
 
@@ -39,12 +40,15 @@ export class Dashboard {
   }
 
   refreshDashboard(data) {
-    const chartData = this.getChartDataFromService(data);
-    if (chartData.ventasAnuales) {
-      this.chartBuilder.update(this.ventasAnualesChart, chartData.ventasAnuales);
+    const chartData = this.chartsFormatter.format(data);
+    if (chartData.ventasAnuales.data) {
+      this.chartBuilder.update(this.ventasAnualesChart, chartData.ventasAnuales.data);
     }
-    if (chartData.anulacionesMes) {
-      this.chartBuilder.update(this.anulacionesDelMesChart, chartData.anulacionesMes);
+    if (chartData.anulacionesMes.data) {
+      this.chartBuilder.update(this.anulacionesDelMesChart, chartData.anulacionesMes.data);
+    }
+    if (chartData.productosMes.data) {
+      this.chartBuilder.update(this.productosDelMesChart, chartData.productosMes.data);
     }
     this.renderCards(data);
     this.renderAnulaciones(data);
@@ -73,28 +77,18 @@ export class Dashboard {
     });
     this.cardData = data.cards;
   }
-  //converts data from api to chart model
-  formatChart(data, par, type) {
-    const chart = data.charts.filter(c=>c.name === par)[0];
-    if (!chart) return null;
-    const chartData = chart.data;
-    return this.chartFormatter.format(chartData, type);
-  }
 
-  getChartDataFromService(data) {
-    return {
-      ventasAnuales: this.formatChart(data, 'VENTAS_ANUALES', 'bar'),
-      anulacionesMes: this.formatChart(data, 'ANULACIONES_DEL_MES', 'radar')
-    };
-  }
   renderCharts(data) {
-    const chartData = this.getChartDataFromService(data);
+    const chartData = this.chartsFormatter.format(data);
 
-    if (chartData.ventasAnuales) {
+    if (chartData.ventasAnuales.data) {
       this.ventasAnualesChart = this.chartBuilder.build('ventas-anuales-chart', chartData.ventasAnuales, 'bar');
     }
-    if (chartData.anulacionesMes) {
+    if (chartData.anulacionesMes.data) {
       this.anulacionesDelMesChart = this.chartBuilder.build('anulaciones-del-mes-chart', chartData.anulacionesMes, 'radar');
+    }
+    if (chartData.productosMes.data) {
+      this.productosDelMesChart = this.chartBuilder.build('productos-vendidos-mes-chart', chartData.productosMes, 'pie');
     }
   }
 }

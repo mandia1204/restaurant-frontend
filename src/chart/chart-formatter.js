@@ -1,5 +1,5 @@
 import { Colors } from '../util/colors';
-import { ChartColors } from './chart-colors';
+import { ChartColors } from './chart-config';
 
 export default class ChartFormatter {
 

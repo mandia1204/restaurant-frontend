@@ -6,8 +6,10 @@ export default class ChartBuilder {
     this.defaultOpts = { 'pie': this._pieOptions(), 'bar': this._barOptions(), 'line': this._barOptions(), 'radar': this._radarOptions() };
   }
 
-  build(id, data, type) {
+  build(id, chartData, type) {
     const ctx = document.getElementById(id);
+    const data = chartData.data;
+    const opts = chartData.opts;
     /*eslint-disable no-unused-vars*/
     const myChart = new Chart(ctx, {
       type: type,
