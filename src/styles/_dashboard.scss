@@ -20,10 +20,9 @@
 }
 
 .dashboard-chart {
-  // border: 1px solid $primary-color;
   @extend .card;
   .card-content {
-    padding: 2px !important;
+    padding: 5px !important;
   }
 }
 
