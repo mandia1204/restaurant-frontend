@@ -56,12 +56,16 @@
 
 .anulaciones {
   .card {
-    height: 294px;
+    height: 335px;
   }
   .card-content {
-    max-height: 290px;
-    overflow-y: auto;
+    .collection {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
     .anulaciones-list-wrapper {
+      overflow-y: auto;
+      max-height: 250px;
       p {
         color:red;
         font-size:1.2em;
