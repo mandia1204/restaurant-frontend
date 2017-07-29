@@ -7,6 +7,7 @@ import { CardOptions } from '../../util/card-options';
 import { Ops } from '../../util/constants';
 import AnulacionesFormatter from './formatters/anulaciones-formatter';
 import ChartsFormatter from './formatters/charts-formatter';
+import dashboardConfig from './dashboard-config';
 
 @inject(EventAggregator, DashboardService, ChartBuilder, ChartsFormatter, AnulacionesFormatter)
 export class Dashboard {
@@ -17,16 +18,33 @@ export class Dashboard {
     this.chartBuilder = chartBuilder;
     this.chartsFormatter = chartsFormatter;
     this.anulacionesFormatter = anulacionesFormatter;
+    this.timer = null;
   }
 
   attached() {
     this.subscriber = this.ea.subscribe('nav-bar-dashboard-filter-changed', this.filtersChanged.bind(this));
     const filters = { anio: document.getElementById('nav-bar-select-year').value, mes: 4, ops: Ops.all };
     this.retrieveDashboard(filters).then(this.renderDashboard.bind(this));
+    this.timer = this.setDashboardTimer();
   }
 
   detached() {
     this.subscriber.dispose();
+    if(this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
+  setDashboardTimer() {
+    return setInterval(() => {
+      const filters = {
+        anio: document.getElementById('nav-bar-select-year').value,
+        mes: document.getElementById('nav-bar-select-month').value,
+        ops: Ops.all
+      };
+      this.retrieveDashboard(filters).then(this.renderDashboard.bind(this));
+    }, dashboardConfig.refreshInterval);
   }
 
   retrieveDashboard(filters) {
